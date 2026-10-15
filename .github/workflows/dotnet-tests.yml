@@ -1,0 +1,16 @@
+name: .NET QA Automation Tests
+on: push: pull_request: workflow_dispatch:
+jobs: api-tests: runs-on: ubuntu-latest steps: - name: Checkout repository uses: actions/checkout@v4
+  - name: Setup .NET
+    uses: actions/setup-dotnet@v4
+    with:
+      dotnet-version: 8.0.x
+
+  - name: Restore API project
+    run: dotnet restore ApiRestSharp.Tests.csproj
+
+  - name: Build API project
+    run: dotnet build ApiRestSharp.Tests.csproj --no-restore
+
+  - name: Run API tests
+    run: dotnet test ApiRestSharp.Tests.csproj --no-build --logger "trx;LogFileName=api-tests.trx"
