@@ -1,3 +1,4 @@
+
 name: Dotnet Tests
 
 'on':
@@ -19,3 +20,4 @@ jobs:
 
       - name: Build API project
         run: dotnet build ApiRestSharp.Tests.csproj
+
